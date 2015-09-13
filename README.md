@@ -3,6 +3,8 @@ Web
 
 # Presentation
 
+PhoneGap client for pyAggr3g470r.
+
 # Installation
 
 ## Installation of Bower to manage web libraries

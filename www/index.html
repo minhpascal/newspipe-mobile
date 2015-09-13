@@ -149,7 +149,7 @@
                 }
 
                 // load the different cards
-                app.load("articles", load_unread_articles, {"unread": true});
+                app.load("articles", load_unread_articles, {"readed": false});
                 app.load("articles", load_favorites_articles, {"like": true});
 
                 $('.collapsible').collapsible({

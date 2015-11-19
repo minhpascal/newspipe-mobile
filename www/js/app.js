@@ -20,8 +20,7 @@ var app = (function()
         return new Date(date.replace(' ', 'T')).toLocaleString('en-US', { hour12: false });
     }
 
-    app.load = function(service, load_objects, data) {
-        console.log(data);
+    app.load = function(service, load_objects, list_objects, data) {
         $.ajax({
             type: 'GET',
             url: app.v2_API + service,
@@ -35,7 +34,13 @@ var app = (function()
                             window.localStorage.getItem("password")));
             },
             success: function (objects) {
-                load_objects(objects);
+                if (objects == undefined || objects == null) {
+                    objects = [];
+                }
+                $("#"+list_objects).empty();
+                if (objects.length != 0) {
+                    load_objects(objects);
+                }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 console.log(errorThrown);

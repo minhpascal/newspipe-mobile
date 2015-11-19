@@ -48,35 +48,10 @@ var app = (function()
         });
     }
 
-    app.showScreen = function(screenId)
-    {
-        // Hide current screen if set.
-        if (app.currentScreenId != null)
-        {
-            $('#' + app.currentScreenId).hide();
-        }
-
-        // Show new screen.
-        app.currentScreenId = screenId;
-        $('#' + app.currentScreenId).show();
-        document.body.scrollTop = 0;
-    };
-
-    app.showHomeScreen = function()
-    {
-        app.showScreen('id-screen-home');
-    };
-
-    app.onNavigateBack = function()
-    {
-        history.back();
-    };
 
     // ------------- Initialisation ------------- //
 
     document.addEventListener('deviceready', onDeviceReady, false);
-
-    app.showHomeScreen();
 
     // ------------- Return application object ------------- //
 

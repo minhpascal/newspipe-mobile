@@ -11,6 +11,9 @@
         <link type="text/css" rel="stylesheet"
             href="bower_components/Materialize/dist/css/materialize.min.css"
             media="screen,projection"/>
+        <link type="text/css" rel="stylesheet"
+            href="css/main.css"
+            media="screen,projection"/>
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="user-scalable=no, initial-scale=1,
             maximum-scale=1, minimum-scale=1, width=device-width">
@@ -22,21 +25,19 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper blue-grey">
-                    <a href="#!" class="brand-logo">pyAggr3g470r</a>
                     <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="about.html">Close</a></li>
-                    </ul>
+                    <a href="#!" class="brand-logo">pyAggr3g470r</a>
                     <ul class="side-nav fixed" id="slide-out">
                         <li class="logo">
                             <a id="logo-container" href="index.html" class="brand-logo">
-                                <object id="front-page-logo" type="image/svg+xml" data="images/materialize.svg">Your browser does not support SVG</object>
+                                <img src="images/icon-menu.png" />
                             </a>
                         </li>
                         <li class="bold"><a href="index.html"></a></li>
-                        <li class="bold"><a href="about.html" class="waves-effect waves-teal">About</a></li>
-                        <li class="bold" id="close-application"><a href="#" class="waves-effect waves-teal">Close</a></li>
+                        <div id="navbar-anchors"></div>
+                        <li class="bold"><hr /></li>
+                        <li class="bold"><a href="signin.html" class="waves-effect waves-teal">Use a different account</a></li>
+                        <li class="bold"><a href="#modalAbout" class="waves-effect waves-teal modal-trigger">About this application</a></li>
                     </ul>
                 </div>
             </nav>
@@ -233,13 +234,9 @@
                 });
 
                 // are we running in native app or in a browser?
-                // Hide buttons on Android.
-                var isAndroid =
-                    navigator.userAgent.match(/Android/) ||
-                    navigator.userAgent.match(/android/);
-                window.isphone = isAndroid;
-                if(document.URL.indexOf("http://") === -1
-                    && document.URL.indexOf("https://") === -1) {
+                // are we running in native app or in a browser?
+                window.isphone = false;
+                if (typeof cordova !== 'undefined') {
                     window.isphone = true;
                 }
 
@@ -247,6 +244,7 @@
                 app.load("articles?limit=15", load_all_articles, "list-all-articles", {});
                 app.load("articles", load_read_articles, "list-read-articles", {readed: true});
                 app.load("articles", load_unread_articles, "list-unread-articles", {readed: false});
+
                 app.load("articles", load_favorites_articles, "list-favorites-articles", {like: true});
 
                 $('.collapsible').collapsible({

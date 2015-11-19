@@ -47,8 +47,15 @@
                 <div class="col s12 m12">
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
-                            <span class="card-title">Unread articles</span>
+                            <span class="card-title">Articles</span>
                         </div>
+                        <ul class="tabs">
+                            <li class="tab col s4"><a href="#list-all-articles">All</a></li>
+                            <li class="tab col s4"><a href="#list-read-articles">Read</a></li>
+                            <li class="tab col s4"><a class="active" href="#list-unread-articles">Unread</a></li>
+                        </ul>
+                        <ul id="list-all-articles" class="collapsible" data-collapsible="accordion"></ul>
+                        <ul id="list-read-articles" class="collapsible" data-collapsible="accordion"></ul>
                         <ul id="list-unread-articles" class="collapsible" data-collapsible="accordion"></ul>
                     </div>
                 </div>
@@ -80,31 +87,83 @@
             });
         </script>
         <script>
-            function load_unread_articles(unread_articles) {
-                //unread_articles = _.map(unread_articles, function(e){
-                    //e.hour = app.date_to_hour(e.start); return e; });
-                //unread_articles = _.sortBy(unread_articles, 'date');
-                var unreadArticlesTmpl = _.template(
-                    '<li>' +
-                        '<div class="collapsible-header truncate">' +
-                            '<%= title %>' +
-                        '</div>' +
-                        '<div class="collapsible-body">' +
-                            '<p class="flow-text"><b><%= content %></p>' +
-                        '</div>' +
-                    '</li>');
-                for (article in unread_articles) {
-                    $('#list-unread-articles').append(unreadArticlesTmpl(
-                        {
-                            title: unread_articles[article].title,
-                            content: unread_articles[article].content
-                        }
-                    ));
-                }
-                $('.collapsible').collapsible({
-                    accordion : false
-                });
+        function load_all_articles(all_articles) {
+            //unread_articles = _.map(unread_articles, function(e){
+                //e.hour = app.date_to_hour(e.start); return e; });
+            //unread_articles = _.sortBy(unread_articles, 'date');
+            var allArticlesTmpl = _.template(
+                '<li>' +
+                    '<div class="collapsible-header truncate">' +
+                        '<%= title %>' +
+                    '</div>' +
+                    '<div class="collapsible-body">' +
+                        '<p class="flow-text"><b><%= content %></p>' +
+                    '</div>' +
+                '</li>');
+            for (article in all_articles) {
+                $('#list-all-articles').append(allArticlesTmpl(
+                    {
+                        title: all_articles[article].title,
+                        content: all_articles[article].content
+                    }
+                ));
             }
+            $('.collapsible').collapsible({
+                accordion : false
+            });
+        }
+
+        function load_read_articles(read_articles) {
+            //read_articles = _.map(read_articles, function(e){
+                //e.hour = app.date_to_hour(e.start); return e; });
+            //read_articles = _.sortBy(read_articles, 'date');
+            var readArticlesTmpl = _.template(
+                '<li>' +
+                    '<div class="collapsible-header truncate">' +
+                        '<%= title %>' +
+                    '</div>' +
+                    '<div class="collapsible-body">' +
+                        '<p class="flow-text"><b><%= content %></p>' +
+                    '</div>' +
+                '</li>');
+            for (article in read_articles) {
+                $('#list-read-articles').append(readArticlesTmpl(
+                    {
+                        title: read_articles[article].title,
+                        content: read_articles[article].content
+                    }
+                ));
+            }
+            $('.collapsible').collapsible({
+                accordion : false
+            });
+        }
+
+        function load_unread_articles(unread_articles) {
+            //unread_articles = _.map(unread_articles, function(e){
+                //e.hour = app.date_to_hour(e.start); return e; });
+            //unread_articles = _.sortBy(unread_articles, 'date');
+            var unreadArticlesTmpl = _.template(
+                '<li>' +
+                    '<div class="collapsible-header truncate">' +
+                        '<%= title %>' +
+                    '</div>' +
+                    '<div class="collapsible-body">' +
+                        '<p class="flow-text"><b><%= content %></p>' +
+                    '</div>' +
+                '</li>');
+            for (article in unread_articles) {
+                $('#list-unread-articles').append(unreadArticlesTmpl(
+                    {
+                        title: unread_articles[article].title,
+                        content: unread_articles[article].content
+                    }
+                ));
+            }
+            $('.collapsible').collapsible({
+                accordion : false
+            });
+        }
 
             function load_favorites_articles(favorites_articles) {
                 var favoritesArticlesTmpl = _.template(
@@ -149,6 +208,8 @@
                 }
 
                 // load the different cards
+                app.load("articles?limit=15", load_all_articles, {});
+                app.load("articles", load_read_articles, {readed: true});
                 app.load("articles", load_unread_articles, {readed: false});
                 app.load("articles", load_favorites_articles, {like: true});
 

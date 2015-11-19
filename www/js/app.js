@@ -4,7 +4,8 @@ var app = (function()
     // Application object.
     var app = {};
 
-	app.v2_API = "https://pyaggr3g470r.herokuapp.com/api/v2.0/";
+    //app.v2_API = "https://pyaggr3g470r.herokuapp.com/api/v2.0/";
+    app.v2_API = "http://127.0.0.1:5000/api/v2.0/";
 
     // ------------- Private helper function ------------- //
 
@@ -20,6 +21,7 @@ var app = (function()
     }
 
     app.load = function(service, load_objects, data) {
+        console.log(data);
         $.ajax({
             type: 'GET',
             url: app.v2_API + service,
@@ -37,9 +39,6 @@ var app = (function()
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 console.log(errorThrown);
-                if (errorThrown == "UNAUTHORIZED") {
-                    window.location.replace("signin.html");
-                }
             }
         });
     }

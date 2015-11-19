@@ -44,7 +44,7 @@ You can add this line in your *.bashrc* file.
 
 # License
 
-[GNU Affero General Public License version 3](https://www.gnu.org/licenses/agpl-3.0.html).
+[GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.html).
 
 # Contact
 

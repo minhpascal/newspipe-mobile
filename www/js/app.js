@@ -4,8 +4,8 @@ var app = (function()
     // Application object.
     var app = {};
 
-    //app.v2_API = "https://pyaggr3g470r.herokuapp.com/api/v2.0/";
-    app.v2_API = "http://127.0.0.1:5000/api/v2.0/";
+    app.v2_API = "https://pyaggr3g470r.herokuapp.com/api/v2.0/";
+    //app.v2_API = "http://127.0.0.1:5000/api/v2.0/";
 
     // ------------- Private helper function ------------- //
 

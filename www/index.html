@@ -140,8 +140,8 @@
                 var articlesTmpl = _.template(
                     '<li>' +
                         '<div class="collapsible-header row">' +
-                        '<div class="col s10 truncate"><%= title %></div> '+
-                        '<div class="col s2"><a href="#" class="fav" data-id="<%= id %>"><img src="images/star.png" alt="favorite"/></a></div>' +
+                            '<div class="col s10 truncate"><%= title %></div>' +
+                            '<div class="col s2"><a href="#" class="fav <% if (like) { %>enabled<% }%>" data-id="<%= id %>"><img src="images/star<% if (like) { %>-enabled<% }%>.png" alt="favorite"/></a></div>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
                             '<p class="flow-text"><b><%= feed_name %></b></p>' +
@@ -159,6 +159,7 @@
                             id: articles[article].id,
                             title: articles[article].title,
                             content: app.html2text(articles[article].content),
+                            like: articles[article].like,
                             feed_name: articles[article].feed_name
                         }
                     ));
@@ -182,6 +183,23 @@
                 if (typeof cordova !== 'undefined') {
                     window.isphone = true;
                 }
+
+                // Like or unlike an article
+                $('.collapsible').on('click', 'a', function(e) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    app.update_article($(this).attr('data-id'),
+                                        {"like":!$(this).hasClass("enabled")});
+
+                    if ($(this).hasClass("enabled")) {
+                        $(this).removeClass("enabled");
+                        $(this).children().attr("src", "images/star.png");
+                    } else {
+                        $(this).addClass("enabled");
+                        $(this).children().attr("src", "images/star-enabled.png");
+                    }
+                });
 
                 // Side Navigation fix
                 $('.side-nav li a').on('click', function(e) {

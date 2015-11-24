@@ -84,6 +84,27 @@ var app = (function()
         });
     }
 
+    app.update_article = function(article_id, data) {
+        $.ajax({
+            type: 'PUT',
+            url: app.v2_API + "article/" + article_id,
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data),
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("Authorization", "Basic " +
+                        btoa(window.localStorage.getItem("nickname")
+                            + ":" +
+                            window.localStorage.getItem("password")));
+            },
+            success: function (result) {
+                
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+            }
+        })
+    }
+
 
     // ------------- Initialisation ------------- //
 

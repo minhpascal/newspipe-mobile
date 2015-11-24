@@ -35,7 +35,7 @@ var app = (function()
         return tag.innerText;
     }
 
-    app.load = function(service, load_objects, list_objects) {
+    app.load = function(service, load_objects, list_id) {
         $.ajax({
             type: 'GET',
             url: app.v2_API + service,
@@ -52,29 +52,29 @@ var app = (function()
                 if (objects == undefined || objects == null) {
                     objects = [];
                 }
-                $("#"+list_objects).empty();
+                $("#"+list_id).empty();
                 if (objects.length != 0) {
-                    load_objects(objects);
+                    load_objects(objects, list_id);
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
-                $("#"+list_objects).empty();
+                $("#"+list_id).empty();
                 if (errorThrown == "UNAUTHORIZED") {
-                    $("#"+list_objects).append('<li>' +
+                    $("#"+list_id).append('<li>' +
                                 '<div class="collapsible-header">' +
                                     '<a href="signin.html" class="modal-trigger">Log in.</a>' +
                                 '</div>' +
                             '</li>');
                 }
                 else if (errorThrown == "timeout") {
-                    $("#"+list_objects).append('<li>' +
+                    $("#"+list_id).append('<li>' +
                                 '<div class="collapsible-header">' +
                                     'Problem when retrieving information.' +
                                 '</div>' +
                             '</li>');
                 }
                 else {
-                    $("#"+list_objects).append('<li>' +
+                    $("#"+list_id).append('<li>' +
                                 '<div class="collapsible-header">' +
                                     'Problem when retrieving information.' +
                                 '</div>' +

@@ -129,71 +129,15 @@
         <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
         <script src="./js/modernizr.js"></script>
         <script>
-            function load_all_articles(all_articles) {
-                all_articles = _.map(all_articles, function(e){
-                    e.hour = app.date_to_hour(e.date); return e; });
-                all_articles = _.sortBy(all_articles, 'hour').reverse();
-                var allArticlesTmpl = _.template(
-                    '<li>' +
-                        '<div class="collapsible-header truncate">' +
-                            '<%= title %>' +
-                        '</div>' +
-                        '<div class="collapsible-body">' +
-                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
-                            '<p class="flow-text"><%= content %></p>' +
-                        '</div>' +
-                    '</li>');
-                for (article in all_articles) {
-                    $('#list-all-articles').append(allArticlesTmpl(
-                        {
-                            title: all_articles[article].title,
-                            content: app.html2text(all_articles[article].content),
-                            feed_name: all_articles[article].feed_name
-                        }
-                    ));
-                }
-                $('.collapsible').collapsible({
-                    accordion : false
-                });
-            }
-
-            function load_read_articles(read_articles) {
-                read_articles = _.map(read_articles, function(e){
-                    e.hour = app.date_to_hour(e.date); return e; });
-                read_articles = _.sortBy(read_articles, 'hour').reverse();
-                var readArticlesTmpl = _.template(
-                    '<li>' +
-                        '<div class="collapsible-header truncate">' +
-                            '<%= title %>' +
-                        '</div>' +
-                        '<div class="collapsible-body">' +
-                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
-                            '<p class="flow-text"><%= content %></p>' +
-                        '</div>' +
-                    '</li>');
-                for (article in read_articles) {
-                    $('#list-read-articles').append(readArticlesTmpl(
-                        {
-                            title: read_articles[article].title,
-                            content: app.html2text(read_articles[article].content),
-                            feed_name: read_articles[article].feed_name
-                        }
-                    ));
-                }
-                $('.collapsible').collapsible({
-                    accordion : false
-                });
-            }
-
-            function load_unread_articles(unread_articles) {
-                unread_articles = _.map(unread_articles, function(e){
+            function load_articles_generic(articles, list_id) {
+                articles = _.map(articles, function(e){
                     e.day = app.date_to_day(e.date); return e; });
-                unread_articles = _.map(unread_articles, function(e){
+                articles = _.map(articles, function(e){
                     e.hour = app.date_to_hour(e.date); return e; });
-                unread_articles = _.sortBy(unread_articles, 'hour').reverse();
+                articles = _.sortBy(articles, 'hour').reverse();
                 var headTmpl = _.template(
                     '<li class="scheduleHeader"><%= day %></li>');
-                var unreadArticlesTmpl = _.template(
+                var articlesTmpl = _.template(
                     '<li>' +
                         '<div class="collapsible-header row">' +
                         '<div class="col s10 truncate"><%= title %></div> '+
@@ -205,17 +149,17 @@
                         '</div>' +
                     '</li>');
                 var prevDay = '';
-                for (article in unread_articles) {
-                    if (prevDay !== unread_articles[article].day) {
-                        $("#list-unread-articles").append(headTmpl({day: unread_articles[article].day}));
-                        prevDay = unread_articles[article].day;
+                for (article in articles) {
+                    if (prevDay !== articles[article].day) {
+                        $("#"+list_id).append(headTmpl({day: articles[article].day}));
+                        prevDay = articles[article].day;
                     }
-                    $('#list-unread-articles').append(unreadArticlesTmpl(
+                    $("#"+list_id).append(articlesTmpl(
                         {
-                            id: unread_articles[article].id,
-                            title: unread_articles[article].title,
-                            content: app.html2text(unread_articles[article].content),
-                            feed_name: unread_articles[article].feed_name
+                            id: articles[article].id,
+                            title: articles[article].title,
+                            content: app.html2text(articles[article].content),
+                            feed_name: articles[article].feed_name
                         }
                     ));
                 }
@@ -224,33 +168,6 @@
                 });
             }
 
-            function load_favorites_articles(favorites_articles) {
-                favorites_articles = _.map(favorites_articles, function(e){
-                    e.hour = app.date_to_hour(e.date); return e; });
-                favorites_articles = _.sortBy(favorites_articles, 'hour').reverse();
-                var favoritesArticlesTmpl = _.template(
-                    '<li>' +
-                        '<div class="collapsible-header truncate">' +
-                            '<%= title %>' +
-                        '</div>' +
-                        '<div class="collapsible-body">' +
-                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
-                            '<p class="flow-text"><%= content %></p>' +
-                        '</div>' +
-                    '</li>');
-                for (article in favorites_articles) {
-                    $('#list-favorites-articles').append(favoritesArticlesTmpl(
-                        {
-                            title: favorites_articles[article].title,
-                            content: app.html2text(favorites_articles[article].content),
-                            feed_name: favorites_articles[article].feed_name
-                        }
-                    ));
-                }
-                $('.collapsible').collapsible({
-                    accordion : false
-                });
-            }
 
             $( document ).ready(function() {
                 // Initialize collapse button
@@ -275,11 +192,11 @@
                 });
 
                 // load the different cards
-                app.load("articles?limit=10", load_all_articles, "list-all-articles");
-                app.load("articles?readed=True&limit=10", load_read_articles, "list-read-articles");
-                app.load("articles?readed=False&limit=50", load_unread_articles, "list-unread-articles");
+                app.load("articles?limit=10", load_articles_generic, "list-all-articles");
+                app.load("articles?readed=True&limit=10", load_articles_generic, "list-read-articles");
+                app.load("articles?readed=False&limit=50", load_articles_generic, "list-unread-articles");
 
-                app.load("articles?like=True&limit=1", load_favorites_articles, "list-favorites-articles");
+                app.load("articles?like=True&limit=10", load_articles_generic, "list-favorites-articles");
             });
         </script>
     </body>

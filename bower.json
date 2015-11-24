@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "Materialize": "materialize#~0.97.0",
+    "Materialize": "materialize#~0.97.3",
     "lodash": "~3.10.1"
   }
 }

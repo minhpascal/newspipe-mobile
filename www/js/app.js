@@ -43,29 +43,27 @@ var app = (function()
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
+                $("#"+list_objects).empty();
                 if (errorThrown == "UNAUTHORIZED") {
-                    $("#"+list_objects).empty();
                     $("#"+list_objects).append('<li>' +
                                 '<div class="collapsible-header">' +
                                     '<a href="signin.html" class="modal-trigger">Log in.</a>' +
                                 '</div>' +
-                            '</li>')
+                            '</li>');
                 }
                 else if (errorThrown == "timeout") {
-                    $("#"+list_objects).empty();
                     $("#"+list_objects).append('<li>' +
                                 '<div class="collapsible-header">' +
                                     'Problem when retrieving information.' +
                                 '</div>' +
-                            '</li>')
+                            '</li>');
                 }
                 else {
-                    $("#"+list_objects).empty();
                     $("#"+list_objects).append('<li>' +
                                 '<div class="collapsible-header">' +
                                     'Problem when retrieving information.' +
                                 '</div>' +
-                            '</li>')
+                            '</li>');
                 }
             }
         });

@@ -40,6 +40,34 @@ You can add this line in your *.bashrc* file.
     $ cordova build android
     $ adb install -r platforms/android/build/outputs/apk/android-debug.apk
 
+### Build a release for Google Play
+
+#### Build an unsigned release
+
+    $ cordova build android --release
+
+#### Generation of the private key
+
+    $ mkdir ~/android_keystore
+    $ keytool -genkey -v -keystore ~/.android_keystore/my-release-key.keystore -alias your_key -keyalg RSA -keysize 2048 -validity 10000
+
+Skip this step if you already have a keystore.
+
+#### Sign the application
+
+    $ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ~/.android_keystore/my-release-key.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk your_key --signedjar ./platforms/android/build/outputs/apk/android-release-signed.apk
+
+#### Check the signature
+
+    $ jarsigner -verify -verbose -certs ./platforms/android/build/outputs/apk/android-release-signed.apk
+
+#### Align the final APK
+
+    $ zipalign -v 4 ./platforms/android/build/outputs/apk/android-release-signed.apk ./platforms/android/build/outputs/apk/Adaptive_Conference_Companion.apk
+
+You can now upload the APK on the Google Play.
+
+
 ## Compilation of the application for iPhone
 
 # License

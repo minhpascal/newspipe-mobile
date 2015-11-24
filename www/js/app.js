@@ -98,13 +98,11 @@ var app = (function()
                             window.localStorage.getItem("password")));
             },
             success: function (result) {
-                
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
             }
         })
     }
-
 
     // ------------- Initialisation ------------- //
 
@@ -113,5 +111,4 @@ var app = (function()
     // ------------- Return application object ------------- //
 
     return app;
-
 })();

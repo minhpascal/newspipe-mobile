@@ -20,13 +20,13 @@ var app = (function()
         return new Date(date.replace(' ', 'T')).toLocaleString('en-US', { hour12: false });
     }
 
-    app.load = function(service, load_objects, list_objects, data) {
+    app.load = function(service, load_objects, list_objects) {
         $.ajax({
             type: 'GET',
             url: app.v2_API + service,
             contentType: "application/json",
             dataType: "json",
-            data: JSON.stringify(data),
+            timeout: 15000,
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("Authorization", "Basic " +
                         btoa(window.localStorage.getItem("nickname")
@@ -43,7 +43,30 @@ var app = (function()
                 }
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
-                console.log(errorThrown);
+                if (errorThrown == "UNAUTHORIZED") {
+                    $("#"+list_objects).empty();
+                    $("#"+list_objects).append('<li>' +
+                                '<div class="collapsible-header">' +
+                                    '<a href="signin.html" class="modal-trigger">Log in.</a>' +
+                                '</div>' +
+                            '</li>')
+                }
+                else if (errorThrown == "timeout") {
+                    $("#"+list_objects).empty();
+                    $("#"+list_objects).append('<li>' +
+                                '<div class="collapsible-header">' +
+                                    'Problem when retrieving information.' +
+                                '</div>' +
+                            '</li>')
+                }
+                else {
+                    $("#"+list_objects).empty();
+                    $("#"+list_objects).append('<li>' +
+                                '<div class="collapsible-header">' +
+                                    'Problem when retrieving information.' +
+                                '</div>' +
+                            '</li>')
+                }
             }
         });
     }

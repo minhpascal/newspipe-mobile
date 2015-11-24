@@ -244,11 +244,11 @@
                 }
 
                 // load the different cards
-                app.load("articles?limit=10", load_all_articles, "list-all-articles", {});
-                app.load("articles?readed=True&limit=10", load_read_articles, "list-read-articles", {});
-                app.load("articles?readed=False&limit=50", load_unread_articles, "list-unread-articles", {});
+                app.load("articles?limit=10", load_all_articles, "list-all-articles");
+                app.load("articles?readed=True&limit=10", load_read_articles, "list-read-articles");
+                app.load("articles?readed=False&limit=50", load_unread_articles, "list-unread-articles");
 
-                app.load("articles?like=True&limit=10", load_favorites_articles, "list-favorites-articles", {});
+                app.load("articles?like=True&limit=10", load_favorites_articles, "list-favorites-articles");
 
                 $('.collapsible').collapsible({
                     accordion : false

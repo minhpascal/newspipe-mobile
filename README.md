@@ -63,7 +63,7 @@ Skip this step if you already have a keystore.
 
 #### Align the final APK
 
-    $ zipalign -v 4 ./platforms/android/build/outputs/apk/android-release-signed.apk ./platforms/android/build/outputs/apk/Adaptive_Conference_Companion.apk
+    $ zipalign -v 4 ./platforms/android/build/outputs/apk/android-release-signed.apk ./platforms/android/build/outputs/apk/pyAggr3g470r.apk
 
 You can now upload the APK on the Google Play.
 

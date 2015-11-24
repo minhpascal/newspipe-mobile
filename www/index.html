@@ -138,6 +138,7 @@
                             '<%= title %>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
+                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
                             '<p class="flow-text"><%= content %></p>' +
                         '</div>' +
                     '</li>');
@@ -145,7 +146,8 @@
                     $('#list-all-articles').append(allArticlesTmpl(
                         {
                             title: all_articles[article].title,
-                            content: all_articles[article].content
+                            content: app.html2text(all_articles[article].content),
+                            feed_name: all_articles[article].feed_name
                         }
                     ));
                 }
@@ -164,6 +166,7 @@
                             '<%= title %>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
+                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
                             '<p class="flow-text"><%= content %></p>' +
                         '</div>' +
                     '</li>');
@@ -171,7 +174,8 @@
                     $('#list-read-articles').append(readArticlesTmpl(
                         {
                             title: read_articles[article].title,
-                            content: read_articles[article].content
+                            content: app.html2text(read_articles[article].content),
+                            feed_name: read_articles[article].feed_name
                         }
                     ));
                 }
@@ -190,6 +194,7 @@
                             '<%= title %>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
+                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
                             '<p class="flow-text"><%= content %></p>' +
                         '</div>' +
                     '</li>');
@@ -197,7 +202,8 @@
                     $('#list-unread-articles').append(unreadArticlesTmpl(
                         {
                             title: unread_articles[article].title,
-                            content: unread_articles[article].content
+                            content: app.html2text(unread_articles[article].content),
+                            feed_name: unread_articles[article].feed_name
                         }
                     ));
                 }
@@ -216,6 +222,7 @@
                             '<%= title %>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
+                            '<p class="flow-text"><b><%= feed_name %></b></p>' +
                             '<p class="flow-text"><%= content %></p>' +
                         '</div>' +
                     '</li>');
@@ -223,7 +230,8 @@
                     $('#list-favorites-articles').append(favoritesArticlesTmpl(
                         {
                             title: favorites_articles[article].title,
-                            content: favorites_articles[article].content
+                            content: app.html2text(favorites_articles[article].content),
+                            feed_name: favorites_articles[article].feed_name
                         }
                     ));
                 }

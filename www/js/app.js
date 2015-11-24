@@ -20,6 +20,13 @@ var app = (function()
         return new Date(date.replace(' ', 'T')).toLocaleString('en-US', { hour12: false });
     }
 
+    // Converts HTML to text using JavaScript
+    app.html2text = function(html) {
+        var tag = document.createElement('div');
+        tag.innerHTML = html;
+        return tag.innerText;
+    }
+
     app.load = function(service, load_objects, list_objects) {
         $.ajax({
             type: 'GET',

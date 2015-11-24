@@ -125,9 +125,9 @@
         </script>
         <script>
         function load_all_articles(all_articles) {
-            //unread_articles = _.map(unread_articles, function(e){
-                //e.hour = app.date_to_hour(e.start); return e; });
-            //unread_articles = _.sortBy(unread_articles, 'date');
+            all_articles = _.map(all_articles, function(e){
+                e.hour = app.date_to_hour(e.date); return e; });
+            all_articles = _.sortBy(all_articles, 'hour').reverse();
             var allArticlesTmpl = _.template(
                 '<li>' +
                     '<div class="collapsible-header truncate">' +
@@ -151,9 +151,9 @@
         }
 
         function load_read_articles(read_articles) {
-            //read_articles = _.map(read_articles, function(e){
-                //e.hour = app.date_to_hour(e.start); return e; });
-            //read_articles = _.sortBy(read_articles, 'date');
+            read_articles = _.map(read_articles, function(e){
+                e.hour = app.date_to_hour(e.date); return e; });
+            read_articles = _.sortBy(read_articles, 'hour').reverse();
             var readArticlesTmpl = _.template(
                 '<li>' +
                     '<div class="collapsible-header truncate">' +
@@ -177,9 +177,9 @@
         }
 
         function load_unread_articles(unread_articles) {
-            //unread_articles = _.map(unread_articles, function(e){
-                //e.hour = app.date_to_hour(e.start); return e; });
-            //unread_articles = _.sortBy(unread_articles, 'date');
+            unread_articles = _.map(unread_articles, function(e){
+                e.hour = app.date_to_hour(e.date); return e; });
+            unread_articles = _.sortBy(unread_articles, 'hour').reverse();
             var unreadArticlesTmpl = _.template(
                 '<li>' +
                     '<div class="collapsible-header truncate">' +
@@ -203,6 +203,9 @@
         }
 
             function load_favorites_articles(favorites_articles) {
+                favorites_articles = _.map(favorites_articles, function(e){
+                    e.hour = app.date_to_hour(e.date); return e; });
+                favorites_articles = _.sortBy(favorites_articles, 'hour').reverse();
                 var favoritesArticlesTmpl = _.template(
                     '<li>' +
                         '<div class="collapsible-header truncate">' +
@@ -241,11 +244,11 @@
                 }
 
                 // load the different cards
-                app.load("articles?limit=15", load_all_articles, "list-all-articles", {});
-                app.load("articles", load_read_articles, "list-read-articles", {readed: true});
-                app.load("articles", load_unread_articles, "list-unread-articles", {readed: false});
+                app.load("articles?limit=10", load_all_articles, "list-all-articles", {});
+                app.load("articles?readed=True&limit=10", load_read_articles, "list-read-articles", {});
+                app.load("articles?readed=False&limit=50", load_unread_articles, "list-unread-articles", {});
 
-                app.load("articles", load_favorites_articles, "list-favorites-articles", {like: true});
+                app.load("articles?like=True&limit=10", load_favorites_articles, "list-favorites-articles", {});
 
                 $('.collapsible').collapsible({
                     accordion : false

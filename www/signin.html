@@ -74,25 +74,13 @@
 
             $( document ).ready(function() {
                 // are we running in native app or in a browser?
-                // Hide buttons on Android.
-                var isAndroid =
-                    navigator.userAgent.match(/Android/) ||
-                    navigator.userAgent.match(/android/);
-                window.isphone = isAndroid;
-                if(document.URL.indexOf("http://") === -1
-                    && document.URL.indexOf("https://") === -1) {
+                window.isphone = false;
+                if (typeof cordova !== 'undefined') {
                     window.isphone = true;
                 }
 
                 if (window.localStorage.getItem("nickname") != null) {
                     $("#nickname").val(window.localStorage.getItem("nickname"));
-
-                    if (window.localStorage.getItem("password") != null) {
-                        // in this case we can refresh the information about the
-                        // user and directly display the main page
-                        check_auth(window.localStorage.getItem("nickname"),
-                                    window.localStorage.getItem("password"));
-                    }
                 }
             });
         </script>

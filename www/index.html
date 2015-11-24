@@ -191,6 +191,8 @@
                     event.preventDefault();
                     event.stopPropagation();
 
+                    $(this).parent().parent().remove();
+
                     app.update_article($(this).attr('data-id'),
                                         {"readed":true});
                 });

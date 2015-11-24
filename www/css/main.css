@@ -1,0 +1,211 @@
+body {
+    background-color: #ffffff;
+}
+
+#map img, #mapImagepanel img {
+    width: 100%;
+}
+
+.scheduleHeader {
+    background-color: #ddd;
+    padding-left: 5px;
+}
+
+.collapsible {
+    margin-top: 0;
+}
+
+.collapsible-body {
+    background-color: #eee;
+    box-shadow: inset 0 0 10px 0 rgba(0,0,0,0.1);
+    padding-left: 10px;
+}
+.tabs .tab a {
+    color: #777;
+}
+
+.tabs .tab a:hover {
+    color: #bbb;
+}
+
+.tabs .indicator {
+    background-color: #607d8b;
+}
+
+.card-action a.btn, .card-action a.btn:hover {
+  color: white;
+  margin-top: 5px;
+}
+
+.room {
+  white-space: nowrap;
+}
+
+.button-icon {
+  width: 1.2em;
+}
+
+.twitter-icon {
+  width: 1.2em;
+}
+
+a.fav img {
+  margin-top: 10px;
+  width: 23px;
+}
+
+img.gear {
+  margin-top:13px;
+  width: 30px;
+}
+
+.side-nav a {
+  font-size: 14px;
+}
+
+.mdi-navigation-menu {
+  margin-left: 10px;
+}
+
+#configurationModal {
+  margin-right: 10px;
+}
+
+div.collapsible-header.row {
+  margin-bottom:0;
+}
+
+#cardPeople div.collapsible-body img {
+  margin-top: 10px;
+}
+
+
+.collapsible-body {
+  padding: 1rem;
+}
+
+#cardSchedule .collapsible-body p {
+  padding: 0;
+}
+
+.preloader-wrapper.small {
+  margin-top: 10px;
+}
+
+
+main {
+  margin-left: 260px;
+}
+nav {
+  padding-left: 260px;
+}
+
+@media only screen and (max-width : 992px) {
+  main {
+    margin-left: 0px;
+  }
+  nav {
+    padding-left: 0px;
+  }
+}
+
+
+@media only screen and (max-width : 601px) {
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 56px;
+        line-height: 56px;
+    }
+}
+
+@media only screen and (min-width : 993px) {
+  a.brand-logo {
+    margin-left: 10px;
+  }
+}
+
+
+/* to be tested on iPhone 5/5s  */
+@media only screen and (max-width : 568px) {
+  span.card-title {
+    font-size: 20px !important;
+  }
+  .card, .card-content, .card-title {
+    line-height: 30px !important;
+  }
+
+  ul.tabs a {
+    font-size: 12px;
+  }
+
+  .card .card-action {
+    padding: 10px;
+  }
+
+  .card .card-action a {
+    margin-top: 5px;
+  }
+
+  .side-nav a {
+    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+/* fixes for pre-4.4 android */
+.no-flexbox .tabs {
+  display: block;
+}
+
+.no-flexbox .tabs .tab.s4 {
+  width: 33%;
+}
+
+.no-flexbox .tabs .tab.s6 {
+  width: 50%;
+}
+
+.navbar-fixed nav {
+  top: 0;
+  left: 0;
+}
+
+.people-action-row {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.people-action-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media only screen and (min-width: 601px) {
+  .people-action-row > a.waves-effect {
+      width: 45%;
+      margin-left: 5px;
+  }
+}
+
+.people-action-row > a {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+
+@media only screen and (min-width: 993px) {
+  .people-action-row > a.waves-effect {
+      width: 30%;
+      margin-left: 5px;
+  }
+}
+
+#ListOfParking img {
+  border-radius:0;
+}
+
+#modalConfiguration {
+  max-height: 80%;
+}

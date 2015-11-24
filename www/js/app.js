@@ -20,6 +20,14 @@ var app = (function()
         return new Date(date.replace(' ', 'T')).toLocaleString('en-US', { hour12: false });
     }
 
+    app.date_to_day = function(date) {
+        dateObj = new Date(date.replace(' ', 'T'));
+        var month = dateObj.getUTCMonth() + 1;
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+        return year + "/" + month + "/" + day;
+    }
+
     // Converts HTML to text using JavaScript
     app.html2text = function(html) {
         var tag = document.createElement('div');

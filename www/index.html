@@ -127,6 +127,7 @@
         <script type="text/javascript" src="bower_components/lodash/lodash.min.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
+        <script src="./js/modernizr.js"></script>
         <script>
             function load_all_articles(all_articles) {
                 all_articles = _.map(all_articles, function(e){
@@ -186,21 +187,32 @@
 
             function load_unread_articles(unread_articles) {
                 unread_articles = _.map(unread_articles, function(e){
+                    e.day = app.date_to_day(e.date); return e; });
+                unread_articles = _.map(unread_articles, function(e){
                     e.hour = app.date_to_hour(e.date); return e; });
                 unread_articles = _.sortBy(unread_articles, 'hour').reverse();
+                var headTmpl = _.template(
+                    '<li class="scheduleHeader"><%= day %></li>');
                 var unreadArticlesTmpl = _.template(
                     '<li>' +
-                        '<div class="collapsible-header truncate">' +
-                            '<%= title %>' +
+                        '<div class="collapsible-header row">' +
+                        '<div class="col s10 truncate"><%= title %></div> '+
+                        '<div class="col s2"><a href="#" class="fav" data-id="<%= id %>"><img src="images/star.png" alt="favorite"/></a></div>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
                             '<p class="flow-text"><b><%= feed_name %></b></p>' +
                             '<p class="flow-text"><%= content %></p>' +
                         '</div>' +
                     '</li>');
+                var prevDay = '';
                 for (article in unread_articles) {
+                    if (prevDay !== unread_articles[article].day) {
+                        $("#list-unread-articles").append(headTmpl({day: unread_articles[article].day}));
+                        prevDay = unread_articles[article].day;
+                    }
                     $('#list-unread-articles').append(unreadArticlesTmpl(
                         {
+                            id: unread_articles[article].id,
                             title: unread_articles[article].title,
                             content: app.html2text(unread_articles[article].content),
                             feed_name: unread_articles[article].feed_name
@@ -253,6 +265,14 @@
                 if (typeof cordova !== 'undefined') {
                     window.isphone = true;
                 }
+
+                // Side Navigation fix
+                $('.side-nav li a').on('click', function(e) {
+                    windowsize = $(window).width();
+                    if (windowsize < 992) {
+                        $('.button-collapse').sideNav('hide');
+                    }
+                });
 
                 // load the different cards
                 app.load("articles?limit=10", load_all_articles, "list-all-articles");

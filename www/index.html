@@ -167,6 +167,22 @@
                 $('.collapsible').collapsible({
                     accordion : false
                 });
+                // Like or unlike an article
+                $('#'+list_id+' a.fav').on('click', function(e) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    app.update_article($(this).attr('data-id'),
+                                        {"like":!$(this).hasClass("enabled")});
+
+                    if ($(this).hasClass("enabled")) {
+                        $(this).removeClass("enabled");
+                        $(this).children().attr("src", "images/star.png");
+                    } else {
+                        $(this).addClass("enabled");
+                        $(this).children().attr("src", "images/star-enabled.png");
+                    }
+                });
             }
 
 
@@ -183,23 +199,6 @@
                 if (typeof cordova !== 'undefined') {
                     window.isphone = true;
                 }
-
-                // Like or unlike an article
-                $('.collapsible').on('click', 'a', function(e) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
-                    app.update_article($(this).attr('data-id'),
-                                        {"like":!$(this).hasClass("enabled")});
-
-                    if ($(this).hasClass("enabled")) {
-                        $(this).removeClass("enabled");
-                        $(this).children().attr("src", "images/star.png");
-                    } else {
-                        $(this).addClass("enabled");
-                        $(this).children().attr("src", "images/star-enabled.png");
-                    }
-                });
 
                 // Side Navigation fix
                 $('.side-nav li a').on('click', function(e) {

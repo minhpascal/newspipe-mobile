@@ -141,7 +141,8 @@
                     '<li>' +
                         '<div class="collapsible-header row">' +
                             '<div class="col s10 truncate"><%= title %></div>' +
-                            '<div class="col s2"><a href="#" class="fav <% if (like) { %>enabled<% }%>" data-id="<%= id %>"><img src="images/star<% if (like) { %>-enabled<% }%>.png" alt="favorite"/></a></div>' +
+                            '<% if (!readed) { %><div class="col s1"><a href="#" class="check" data-id="<%= id %>"><img src="images/check.png" alt="check"/></a></div><% }%>' +
+                            '<div class="col s1"><a href="#" class="fav <% if (like) { %>enabled<% }%>" data-id="<%= id %>"><img src="images/star<% if (like) { %>-enabled<% }%>.png" alt="favorite"/></a></div>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
                             '<p class="flow-text"><b><%= feed_name %></b></p>' +
@@ -160,6 +161,7 @@
                             title: articles[article].title,
                             content: app.html2text(articles[article].content),
                             like: articles[article].like,
+                            readed: articles[article].readed,
                             feed_name: articles[article].feed_name
                         }
                     ));
@@ -182,6 +184,15 @@
                         $(this).addClass("enabled");
                         $(this).children().attr("src", "images/star-enabled.png");
                     }
+                });
+
+                // Mark an article as read
+                $('#'+list_id+' a.check').on('click', function(e) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    app.update_article($(this).attr('data-id'),
+                                        {"readed":true});
                 });
             }
 

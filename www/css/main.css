@@ -54,6 +54,11 @@ a.fav img {
   width: 18px;
 }
 
+a.check img {
+  margin-top: 10px;
+  width: 18px;
+}
+
 img.gear {
   margin-top:13px;
   width: 30px;

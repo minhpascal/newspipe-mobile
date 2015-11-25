@@ -141,7 +141,7 @@
                     '<li>' +
                         '<div class="collapsible-header row">' +
                             '<div class="col s10 truncate"><%= title %></div>' +
-                            '<% if (!readed) { %><div class="col s1"><a href="#" class="check" data-id="<%= id %>"><img src="images/check.png" alt="check"/></a></div><% }%>' +
+                            '<% if (!readed) { %><div class="col s1"><a href="#" class="check" data-id="<%= id %>"><img src="images/check.png" alt="check"/></a></div><% } else {%><div class="col s1">&nbsp;</div><% }%>' +
                             '<div class="col s1"><a href="#" class="fav <% if (like) { %>enabled<% }%>" data-id="<%= id %>"><img src="images/star<% if (like) { %>-enabled<% }%>.png" alt="favorite"/></a></div>' +
                         '</div>' +
                         '<div class="collapsible-body">' +
@@ -222,11 +222,11 @@
                 });
 
                 // load the different cards
-                app.load("articles?limit=10", load_articles_generic, "list-all-articles");
-                app.load("articles?readed=True&limit=10", load_articles_generic, "list-read-articles");
-                app.load("articles?readed=False&limit=50", load_articles_generic, "list-unread-articles");
+                app.load("articles?order_by=date%20desc&limit=10", load_articles_generic, "list-all-articles");
+                app.load("articles?order_by=date%20desc&readed=True&limit=10", load_articles_generic, "list-read-articles");
+                app.load("articles?order_by=date%20desc&readed=False&limit=50", load_articles_generic, "list-unread-articles");
 
-                app.load("articles?like=True&limit=10", load_articles_generic, "list-favorites-articles");
+                app.load("articles?order_by=date%20desc&like=True&limit=10", load_articles_generic, "list-favorites-articles");
             });
         </script>
     </body>

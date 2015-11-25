@@ -34,8 +34,6 @@ You can add this line in your *.bashrc* file.
     $ cd client/
     $ bower install
     $ cordova plugin add cordova-plugin-whitelist
-    $ cordova plugin add cordova-plugin-dialogs
-    $ cordova plugin add org.apache.cordova.network-information
     $ cordova platform add android
     $ cordova build android
     $ adb install -r platforms/android/build/outputs/apk/android-debug.apk

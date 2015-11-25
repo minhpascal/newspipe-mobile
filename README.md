@@ -1,9 +1,6 @@
-Web
-===
-
 # Presentation
 
-PhoneGap client for pyAggr3g470r.
+Android/iOS client for [pyAggr3g470r](https://github.com/cedricbonhomme/pyAggr3g470r).
 
 # Installation
 
@@ -11,8 +8,7 @@ PhoneGap client for pyAggr3g470r.
 
     $ sudo npm install -g bower
 
-By supposing that you already have installed [npm](https://www.npmjs.com)
-(generally with Node.js).
+By supposing that you already have installed [npm](https://www.npmjs.com).
 
 ## Installation of the Android SDK
 
@@ -21,7 +17,7 @@ SDK. Then export the variable ``ANDROID_HOME``:
 
     $ export ANDROID_HOME=~/.android-sdk-linux/
 
-You can add this line in your *.bashrc* file.
+You can add this line to your *.bashrc* file.
 
 ## Installation of PhoneGap and Cordova
 
@@ -30,10 +26,9 @@ You can add this line in your *.bashrc* file.
 
 ## Compilation of the application for Android
 
-    $ git clone
+    $ git clone https://github.com/cedricbonhomme/pyAggr3g470r-mobile.git
     $ cd client/
     $ bower install
-    $ cordova plugin add cordova-plugin-whitelist
     $ cordova platform add android
     $ cordova build android
     $ adb install -r platforms/android/build/outputs/apk/android-debug.apk

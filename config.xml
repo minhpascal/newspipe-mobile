@@ -1,31 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.pyaggr3g470r.mobile"
-	version="0.1"
-	xmlns="http://www.w3.org/ns/widgets"
-	xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    version="0.1"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>pyAggr3g470r</name>
     <description>
         Mobile application for pyAggr3g470r.
     </description>
     <author email="cedric@cedricbonhomme.org" href="https://www.cedricbonhomme.org/">
-		Cédric Bonhomme
+        Cédric Bonhomme
     </author>
     <content src="index.html" />
 
-	<icon src="www/images/icon.png" />
+    <icon src="www/images/icon.png" />
 
-	<plugin name="cordova-plugin-whitelist" version="1" />
+    <plugin name="cordova-plugin-whitelist" version="1" />
 
-	<access origin="*" />
+    <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-	<allow-intent href="*" />
+    <allow-intent href="*" />
 
     <preference name="DisallowOverscroll" value="true" />
 
-	<feature name="http://api.phonegap.com/1.0/network"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
 
-	<platform name="android">
+    <platform name="android">
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">

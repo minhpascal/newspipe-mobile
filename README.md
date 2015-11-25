@@ -1,6 +1,6 @@
 # Presentation
 
-Android/iOS client for [pyAggr3g470r](https://github.com/cedricbonhomme/pyAggr3g470r).
+Android/iOS client for [JARR](https://github.com/JARR-aggregator/JARR).
 
 # Installation
 
@@ -26,8 +26,8 @@ You can add this line to your *.bashrc* file.
 
 ## Compilation of the application for Android
 
-    $ git clone https://github.com/cedricbonhomme/pyAggr3g470r-mobile.git
-    $ cd client/
+    $ git clone https://github.com/JARR-aggregator/JARR-mobile.git
+    $ cd JARR-mobile/
     $ bower install
     $ cordova platform add android
     $ cordova build android
@@ -56,7 +56,7 @@ Skip this step if you already have a keystore.
 
 #### Align the final APK
 
-    $ zipalign -v 4 ./platforms/android/build/outputs/apk/android-release-signed.apk ./platforms/android/build/outputs/apk/pyAggr3g470r.apk
+    $ zipalign -v 4 ./platforms/android/build/outputs/apk/android-release-signed.apk ./platforms/android/build/outputs/apk/JARR.apk
 
 You can now upload the APK on the Google Play.
 

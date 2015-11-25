@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.pyaggr3g470r.mobile"
+<widget id="com.jarr.mobile"
     version="0.1"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>pyAggr3g470r</name>
+    <name>JARR</name>
     <description>
-        Mobile application for pyAggr3g470r.
+        Mobile application for JARR.
     </description>
     <author email="cedric@cedricbonhomme.org" href="https://www.cedricbonhomme.org/">
         Cédric Bonhomme

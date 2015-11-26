@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.jarr.mobile"
+<widget id="org.jarr.mobile"
     version="0.1"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>JARR</name>
     <description>
-        Mobile application for JARR.
+        Mobile application for JARR (Just Another RSS Reader).
     </description>
     <author email="cedric@cedricbonhomme.org" href="https://www.cedricbonhomme.org/">
         Cédric Bonhomme
@@ -27,6 +27,7 @@
 
     <platform name="android">
         <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="19" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

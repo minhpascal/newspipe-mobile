@@ -122,6 +122,22 @@
             </div>
         </div>
 
+        <!-- Modal Structures -->
+        <div id="modalAbout" class="modal">
+            <div class="modal-content">
+                <h4>JARR<span class="badge">v0.1</span></h4>
+                <p>This software is under AGPLv3 license. You are welcome to
+                copy, modify or redistribute the
+                <a href="https://github.com/JARR-aggregator/JARR-mobile" target="_blank">source code</a>
+                according to the
+                <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GPL</a> license.</p>
+                <img src="images/icon.png" />
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+            </div>
+        </div>
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="bower_components/lodash/lodash.min.js"></script>
@@ -206,6 +222,8 @@
                     edge: 'left', // Choose the horizontal origin
                     closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
                 });
+
+                $('.modal-trigger').leanModal();
 
                 // are we running in native app or in a browser?
                 window.isphone = false;

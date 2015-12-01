@@ -169,23 +169,24 @@
                         '</div>' +
                     '</li>');
                 var prevDay = '';
-                for (article in articles) {
-                    if (prevDay !== articles[article].day) {
-                        $("#"+list_id).append(headTmpl({day: articles[article].day}));
-                        prevDay = articles[article].day;
+                articles.map(function (article) {
+                    if (prevDay !== article.day) {
+                        $("#"+list_id).append(headTmpl({day: article.day}));
+                        prevDay = article.day;
                     }
                     $("#"+list_id).append(articlesTmpl(
                         {
-                            id: articles[article].id,
-                            title: articles[article].title,
-                            content: app.html2text(articles[article].content),
-                            like: articles[article].like,
-                            readed: articles[article].readed,
-                            link: articles[article].link,
-                            feed_name: articles[article].feed_name
+                            id: article.id,
+                            title: article.title,
+                            content: app.html2text(article.content),
+                            like: article.like,
+                            readed: article.readed,
+                            link: article.link,
+                            feed_name: article.feed_name
                         }
                     ));
-                }
+                });
+
                 $('.collapsible').collapsible({
                     accordion : false
                 });

@@ -212,14 +212,20 @@
                     event.preventDefault();
                     event.stopPropagation();
 
-                    var curNode = $(this).parent().parent().parent();
+                    if (list_id != "list-all-articles") {
+                        var curNode = $(this).parent().parent().parent();
 
-                    curNode.hide("slow");
-                    // delete also headers if necessary
-                    if (curNode.prev().hasClass("scheduleHeader") && (curNode.next().length === 0 || curNode.next().hasClass("scheduleHeader"))) {
-                        curNode.prev().hide("slow").remove();
+                        curNode.hide("slow");
+                        // delete also headers if necessary
+                        if (curNode.prev().hasClass("scheduleHeader") && (curNode.next().length === 0 || curNode.next().hasClass("scheduleHeader"))) {
+                            curNode.prev().hide("slow").remove();
+                        }
+                        curNode.remove();
+                    } else {
+                        $(this).hide("slow");
+                        $(this).parent().html("&nbsp;");
+                        $(this).remove();
                     }
-                    curNode.remove();
 
                     app.update_article($(this).attr('data-id'),
                                         {"readed":true});
@@ -252,7 +258,7 @@
                 });
 
                 // load the different cards
-                app.load("articles?order_by=date%20desc&limit=10", load_articles_generic, "list-all-articles");
+                app.load("articles?order_by=date%20desc&limit=20", load_articles_generic, "list-all-articles");
                 app.load("articles?order_by=date%20desc&readed=True&limit=10", load_articles_generic, "list-read-articles");
                 app.load("articles?order_by=date%20desc&readed=False&limit=50", load_articles_generic, "list-unread-articles");
 

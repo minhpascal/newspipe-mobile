@@ -212,7 +212,14 @@
                     event.preventDefault();
                     event.stopPropagation();
 
-                    $(this).parent().parent().parent().remove();
+                    var curNode = $(this).parent().parent().parent();
+
+                    curNode.hide("slow");
+                    // delete also headers if necessary
+                    if (curNode.prev().hasClass("scheduleHeader") && (curNode.next().length === 0 || curNode.next().hasClass("scheduleHeader"))) {
+                        curNode.prev().hide("slow").remove();
+                    }
+                    curNode.remove();
 
                     app.update_article($(this).attr('data-id'),
                                         {"readed":true});

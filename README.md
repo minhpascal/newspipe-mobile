@@ -1,6 +1,6 @@
 # Presentation
 
-Android/iOS client for [JARR](https://github.com/JARR-aggregator/JARR).
+Android/iOS client for [JARR](https://github.com/JARR/JARR).
 
 # Installation
 
@@ -26,7 +26,7 @@ You can add this line to your *.bashrc* file.
 
 ## Compilation of the application for Android
 
-    $ git clone https://github.com/JARR-aggregator/JARR-mobile.git
+    $ git clone https://github.com/JARR/JARR-mobile.git
     $ cd JARR-mobile/
     $ bower install
     $ cordova platform add android
